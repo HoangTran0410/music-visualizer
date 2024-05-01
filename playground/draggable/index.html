@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draggable and Resizable Elements</title>
+    <style>
+        .element {
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+            border: 1px solid black;
+        }
+
+        .drag-resize-able {
+            position: absolute;
+            cursor: move;
+        }
+
+        .resize-handles {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+        }
+
+        .resize-handle {
+            width: 10px;
+            height: 10px;
+            background-color: #00000000;
+            position: absolute;
+        }
+
+        .resize-handle:hover {
+            background-color: #4848487d;
+        }
+
+        .top {
+            cursor: n-resize;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 25px);
+        }
+
+        .left {
+            cursor: w-resize;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            height: calc(100% - 25px);
+        }
+
+        .right {
+            cursor: e-resize;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            height: calc(100% - 25px);
+        }
+
+        .bottom {
+            cursor: s-resize;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 25px);
+        }
+
+        .top-left {
+            cursor: nw-resize;
+            top: 0;
+            left: 0;
+        }
+
+        .top-right {
+            cursor: ne-resize;
+            top: 0;
+            right: 0;
+        }
+
+        .bottom-left {
+            cursor: sw-resize;
+            bottom: 0;
+            left: 0;
+        }
+
+        .bottom-right {
+            cursor: se-resize;
+            bottom: 0;
+            right: 0
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="element"></div>
+    <div class="element"></div>
+
+    <script src="./index.js"></script>
+
+</body>
+
+</html>

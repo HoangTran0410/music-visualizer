@@ -1,0 +1,109 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* draggable and resizeable */
+.drag-resize-able {
+    position: absolute;
+    cursor: move;
+    opacity: 0;
+    transition: opacity 0.3s ease, background-color 0.3s ease;
+}
+
+.drag-resize-able:hover {
+    opacity: 1;
+    border: 2px solid #00ff2ff1;
+    border-radius: 5px;
+    background-color: #00000096;
+}
+
+.resize-handles {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+}
+
+.resize-handle {
+    width: 10px;
+    height: 10px;
+    background-color: #00000000;
+    position: absolute;
+}
+
+.resize-handle:hover {
+    background-color: #4848487d;
+}
+
+.top {
+    cursor: n-resize;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 25px);
+}
+
+.left {
+    cursor: w-resize;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: calc(100% - 25px);
+}
+
+.right {
+    cursor: e-resize;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    height: calc(100% - 25px);
+}
+
+.bottom {
+    cursor: s-resize;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 25px);
+}
+
+.top-left {
+    cursor: nw-resize;
+    top: 0;
+    left: 0;
+}
+
+.top-right {
+    cursor: ne-resize;
+    top: 0;
+    right: 0;
+}
+
+.bottom-left {
+    cursor: sw-resize;
+    bottom: 0;
+    left: 0;
+}
+
+.bottom-right {
+    cursor: se-resize;
+    bottom: 0;
+    right: 0
+}
