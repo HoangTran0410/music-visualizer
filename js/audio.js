@@ -1,12 +1,8 @@
 import Config from "./config.js";
 
-export const audioContext = new AudioContext();
-export const analyser = audioContext.createAnalyser();
-analyser.fftSize = Config.fftSize;
-analyser.smoothingTimeConstant = Config.temporalSmoothing;
-analyser.minDecibels = Config.minDecibels;
-analyser.maxDecibels = Config.maxDecibels;
-let dataArray = new Uint8Array(analyser.frequencyBinCount);
+let audioContext, analyser, dataArray;
+
+export { audioContext, analyser };
 
 export function setFftSize(size) {
   analyser.fftSize = size;
@@ -21,7 +17,16 @@ export function getSpectrum() {
 export function init(connectToSoundOut = false) {
   getStreamFromOtherTab()
     .then((stream) => {
-      audioContext.createMediaStreamSource(stream).connect(analyser);
+      audioContext = new AudioContext();
+      analyser = audioContext.createAnalyser();
+      analyser.smoothingTimeConstant = Config.temporalSmoothing;
+      analyser.minDecibels = Config.minDecibels;
+      analyser.maxDecibels = Config.maxDecibels;
+      setFftSize(Config.fftSize);
+
+      const source = audioContext.createMediaStreamSource(stream);
+      source.connect(analyser);
+
       if (connectToSoundOut) {
         analyser.connect(audioContext.destination);
       }

@@ -1,6 +1,6 @@
 import Config from "./config.js";
 import gui from "./gui.js";
-import { getSpectrum, init as initAudio } from "./audio.js";
+import { analyser, getSpectrum, init as initAudio } from "./audio.js";
 import { getMultiplier, savitskyGolaySmooth } from "./helpers/utils.js";
 import TrapNation from "./components/TrapNation.js";
 
@@ -37,10 +37,14 @@ function draw() {
   context.fillStyle = "#222";
   context.fillRect(0, 0, canvas.width, canvas.height);
 
-  let spectrum = getSpectrum();
-  spectrum = spectrum.slice(Config.startBin, Config.startBin + Config.keepBins);
+  if (!analyser) return;
 
-  console.log(Config.smoothEnabled);
+  let spectrum = getSpectrum();
+  spectrum = spectrum.slice(
+    Config.freqStartIndex,
+    Config.freqStartIndex + Config.freqLength
+  );
+
   if (Config.smoothEnabled) {
     spectrum = savitskyGolaySmooth(
       spectrum,
@@ -48,7 +52,7 @@ function draw() {
       Config.smoothingPasses
     );
   }
-  let multiplier = getMultiplier(spectrum, Config.keepBins);
+  let multiplier = getMultiplier(spectrum, Config.freqLength);
 
   components.forEach((comp) => {
     comp.draw(spectrum, multiplier);
