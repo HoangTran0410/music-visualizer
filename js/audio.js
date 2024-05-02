@@ -3,6 +3,9 @@ import Config from "./config.js";
 export const audioContext = new AudioContext();
 export const analyser = audioContext.createAnalyser();
 analyser.fftSize = Config.fftSize;
+analyser.smoothingTimeConstant = Config.temporalSmoothing;
+analyser.minDecibels = Config.minDecibels;
+analyser.maxDecibels = Config.maxDecibels;
 let dataArray = new Uint8Array(analyser.frequencyBinCount);
 
 export function setFftSize(size) {

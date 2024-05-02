@@ -1,9 +1,9 @@
 const Config = {
   // analyzer config
-  temporalSmoothing: 0.1,
-  minDecibels: -40,
-  maxDecibels: -30,
-  fftSize: 16384,
+  temporalSmoothing: 0.85,
+  minDecibels: -90,
+  maxDecibels: -10,
+  fftSize: 1024,
 
   // emblem config
   minEmblemSize: 50,
@@ -17,7 +17,8 @@ const Config = {
   startBin: 8,
   keepBins: 40,
 
-  // spectrum config
+  // savitskyGolaySmooth
+  smoothEnabled: true,
   smoothingPasses: 1,
   smoothingPoints: 3,
 

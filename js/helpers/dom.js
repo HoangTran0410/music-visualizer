@@ -21,7 +21,6 @@ export function makeElementDraggableAndResizeable(
 
   function startDrag(e) {
     e.preventDefault();
-    console.log("start drag", element);
     const initialX = e.clientX;
     const initialY = e.clientY;
     const initialLeft = element.offsetLeft;
@@ -40,13 +39,11 @@ export function makeElementDraggableAndResizeable(
     }
 
     function stopDrag(event) {
-      console.log("stop drag", element);
       event.preventDefault();
       if (isDragged) {
-        console.log("change finish", pos, element);
         onChangeFinish(pos, element);
+        isDragged = false;
       }
-      isDragged = false;
       document.removeEventListener("mousemove", doDrag);
       document.removeEventListener("mouseup", stopDrag);
     }

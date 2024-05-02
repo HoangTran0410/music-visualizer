@@ -11,8 +11,8 @@ export function savitskyGolaySmooth(
   smoothingPoints = 3,
   smoothingPasses = 1
 ) {
-  const cn = 1 / (2 * sidePoints + 1); // constant
   const sidePoints = Math.floor(smoothingPoints / 2); // our window is centered so this is both nL and nR
+  const cn = 1 / (2 * sidePoints + 1); // constant
   let lastArray = array.slice();
   let newArr = [];
 
