@@ -1,5 +1,5 @@
 import Config from "./config.js";
-import { analyser, init } from "./audio.js";
+import { analyser, init, setFftSize } from "./audio.js";
 
 const gui = new dat.GUI({ name: "Music Visualizer" });
 
@@ -7,7 +7,7 @@ const analyserFolder = gui.addFolder("Analyzer");
 analyserFolder
   .add(Config, "fftSize", [64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384])
   .onFinishChange((val) => {
-    analyser.fftSize = val;
+    setFftSize(val);
   });
 analyserFolder.add(Config, "temporalSmoothing", 0, 1, 0.01).onChange((val) => {
   analyser.smoothingTimeConstant = val;
@@ -24,6 +24,6 @@ savitskyGolaySmoothingFolder.add(Config, "smoothEnabled", true, false);
 savitskyGolaySmoothingFolder.add(Config, "smoothingPasses", 1, 5, 1);
 savitskyGolaySmoothingFolder.add(Config, "smoothingPoints", 1, 5, 1);
 
-gui.add({ play: init }, "play");
+gui.add({ play: () => init(false) }, "play");
 
 export default gui;

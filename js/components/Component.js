@@ -13,6 +13,7 @@ export default class Component {
 
   makeContainer() {
     let div = document.createElement("div");
+    div.classList.add("highlight-on-hover");
     div.style.top = this.y + "px";
     div.style.left = this.x + "px";
     div.style.width = this.w + "px";
@@ -32,9 +33,4 @@ export default class Component {
   update() {}
 
   draw() {}
-
-  static drawBoundingBox(comp, color = "red") {
-    comp.context.strokeStyle = color;
-    comp.context.strokeRect(comp.x, comp.y, comp.w, comp.h);
-  }
 }
